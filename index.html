@@ -238,9 +238,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
       <div class="form-label">직급 선택</div>
       <select id="voter-position" onchange="updateAmountPreview()">
         <option value="">직급을 선택하세요</option>
-        <option value="25000">본부장</option>
-        <option value="20000">단장</option>
-        <option value="15000">지점장</option>
+        <option value="20000">본부장</option>
+        <option value="15000">단장</option>
+        <option value="10000">지점장</option>
         <option value="5000">총무</option>
       </select>
     </div>
@@ -301,7 +301,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
     <div class="modal-title">입금 안내</div>
     <div class="modal-sub" id="modal-position-label">아래 계좌로 참가비를 입금해 주세요</div>
     <div class="account-box">
-      <div class="account-bank">강태두 단장님께 송금 요망</div>
+      <div class="account-bank">카카오뱅크 3333-01-3614520 (강태두)</div>
       <div class="account-amount" id="modal-amount" style="font-size:18px;margin-top:6px;">입금액: 10,000원</div>
     </div>
     <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:1rem;text-align:center;">입금 후 확인 버튼을 눌러 예측을 등록하세요</div>
@@ -342,7 +342,7 @@ function updateAmountPreview(){
   const pos = document.getElementById("voter-position").value;
   const el = document.getElementById("amount-preview");
   if(!pos){ el.style.display="none"; return; }
-  const labels = {"25000":"본부장","20000":"단장","15000":"지점장","5000":"총무"};
+  const labels = {"20000":"본부장","15000":"단장","10000":"지점장","5000":"총무"};
   el.style.display = "block";
   el.textContent = "💰 " + labels[pos] + " 참가비: " + parseInt(pos).toLocaleString("ko-KR") + "원";
 }
@@ -356,7 +356,7 @@ function updatePreview(){
 }
 
 function showAccountModal(){
-  const labels = {25000:"본부장",20000:"단장",15000:"지점장",5000:"총무"};
+  const labels = {20000:"본부장",15000:"단장",10000:"지점장",5000:"총무"};
   const posLabel = labels[pendingVote.position] || "";
   document.getElementById("modal-position-label").textContent = posLabel + " 참가비 안내";
   document.getElementById("modal-amount").textContent = "참가비 " + pendingVote.position.toLocaleString("ko-KR") + "원";
@@ -424,7 +424,7 @@ function renderVotesList(){
   const winKey=finalResult?scoreKey(finalResult.h,finalResult.a):null;
   el.innerHTML=sorted.map(v=>{
     const isWin=winKey&&scoreKey(v.h,v.a)===winKey;
-    const posLabels={25000:"본부장",20000:"단장",15000:"지점장",5000:"총무"};
+    const posLabels={20000:"본부장",15000:"단장",10000:"지점장",5000:"총무"};
     const posTag = v.position ? (' · '+(posLabels[v.position]||'')) : '';
     return '<div class="vote-item">'+
       '<div class="vote-left"><div class="vote-avatar">'+v.name.slice(0,2)+'</div>'+
